@@ -8,11 +8,11 @@
 
     <title>Attendance</title>
 
-    <link href="../../../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../../font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../font-awesome/css/font-awesome.css" rel="stylesheet">
 
-    <link href="../../../css/animate.css" rel="stylesheet">
-    <link href="../../../css/style.css" rel="stylesheet">
+    <link href="../css/animate.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
 
 </head>
 
@@ -25,48 +25,48 @@
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element">
-                            <a >
+                            <a>
                             <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"><?php echo $_SESSION['username'];?></strong>
-                             </span> <span class="text-muted text-xs block">Student <b ></b></span> </span> </a>
-                            <!-- <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a href="/hellosam/studentlogin.php">Logout</a></li>
-                            </ul> -->
+                             </span> <span class="text-muted text-xs block">Student <b class="caret"></b></span> </span> </a>
+                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                <li><a href="../login/logout.php">Logout</a></li>
+                            </ul>
                     </div>
                     <div class="logo-element">
                         IN+
                     </div>
                 </li>
                 <!-- <li>
-                    <a href="../../../home.php"><i class="fa fa-th-large"></i> <span class="nav-label">Home</span></a>
-                </li>
-                <li>
+                    <a href="../home.php"><i class="fa fa-th-large"></i> <span class="nav-label">Home</span></a>
+                </li> -->
+                <!-- <li>
                     <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Auto Attendance</span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="../../auto_attendance.php">Take Attendance</a></li>
-                        <li><a href="../../attendance.php">View Attendance</a></li>
+                        <li><a href="../attendance/auto_attendance.php">Take Attendance</a></li>
+                        <li><a href="../attendance/attendance.php">View Attendance</a></li>
                     </ul>
-                </li>
-                <li>
-                    <a href="../../manual_attendance.php"><i class="fa fa-th-large"></i> <span class="nav-label">Manual Attendance</span></a>
+                </li> -->
+                <!-- <li>
+                    <a href="../attendance/manual_attendance.php"><i class="fa fa-th-large"></i> <span class="nav-label">Manual Attendance</span></a>
                 </li> -->
                 <li>
-                    <a href="examples.php"><i class="fa fa-th-large"></i> <span class="nav-label">Attendance reports</span></a>
+                    <a href="/HelloSAM-master/hellosam/attendance/EasyPHP/examples/examples.php"><i class="fa fa-th-large"></i> <span class="nav-label">Attendance reports</span></a>
                 </li>
                 <li>
-                    <a href="/HelloSAM-master/hellosam/pdf/view_result1.php"><i class="fa fa-th-large"></i> <span class="nav-label">View result</span></a>
+                    <a href="/HelloSAM-master/hellosam/pdf/view_result1.php"><i class="fa fa-th-large"></i> <span class="nav-label">View Results</span></a>
                 </li>
                 <!-- <li>
                     <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Result</span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="../../../pdf/gen_result.php">Generate Result</a></li>
-                        <li><a href="../../attendance.php">View Result</a></li>
+                        <li><a href="../pdf/gen_result.php">Generate Result</a></li>
+                        <li><a href="../pdf/view_result1.php">View Result</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="../../gen_circular.php"><i class="fa fa-th-large"></i> <span class="nav-label">Circular</span></a>
-                </li>
-                <li>
-                    <a href="../../../login/logout.php"><i class="fa fa-th-large"></i> <span class="nav-label">Logout</span></a>
+                    <a href="../attendance/gen_circular.php"><i class="fa fa-th-large"></i> <span class="nav-label">Circular</span></a>
+                </li> -->
+                <!-- <li>
+                    <a href="../login/logout.php"><i class="fa fa-th-large"></i> <span class="nav-label">Logout</span></a>
                 </li> -->
             </ul>
 
@@ -86,7 +86,7 @@
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
                     <li>
-                        <a href="/HelloSAM-master//hellosam/studentlogin.php">
+                        <a href="/HelloSAM-master/hellosam/studentlogin.php">
                             <i class="fa fa-sign-out"></i> Log out
                         </a>
                     </li>

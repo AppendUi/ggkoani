@@ -1,26 +1,21 @@
 <?php
 error_reporting(E_ALL ^ E_DEPRECATED);
 
-include('../db_connection.php');
+include('db_connection.php');
 $db = new DB_FUNCTIONS();
 
 if (isset($_POST['submit'])) {
     $email = $_POST["email"];
     $password = $_POST["password"];
     $user = $db->attempt_login($email,$password);
+
     if($user){
         session_start();
         $_SESSION["username"] = $user["username"];
         $_SESSION["s_email"] = $user["s_email"];
         $_SESSION["user_role"] = $user["user_role"];
         if($user["user_role"] == "admin"){
-            $db->redirect_to("../admin/teacher.php");
-        }
-        if($user["user_role"] == "teacher"){
-            $db->redirect_to("../attendance/manual_attendance.php");
-        }
-        if($user["user_role"] == "student"){
-            $db->redirect_to("../login/pdf/view_result");
+            $db->redirect_to("../hellosam/admin/add_teacher.php");
         }
     }
     else{
@@ -38,24 +33,27 @@ if (isset($_POST['submit'])) {
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../hellosam/assets/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Animation library for notifications   -->
-    <link href="../assets/css/animate.min.css" rel="stylesheet"/>
-    <link href="../assets/css/style.css" rel="stylesheet" type='text/css' />
+    <link href="../hellosam/assets/css/animate.min.css" rel="stylesheet"/>
+    <link href="../hellosam/assets/css/style.css" rel="stylesheet" type='text/css' />
     <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="../assets/css/demo.css" rel="stylesheet" />
+    <link href="../hellosam/assets/css/demo.css" rel="stylesheet" />
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="../assets/css/material-icons.css" rel='stylesheet' type='text/css'>
+    <link href="../hellosam/assets/css/material-icons.css" rel='stylesheet' type='text/css'>
 </head>
 <body class="login-page">
 <div class="login-box">
     <div class="login-box-body">
         <div class="panel-header">
             <h2 class="text-center">
-                <img src="../assets/img/Intellinects.png" alt="Logo">
+            <p>ADMIN</p>
+                <a href="../hellosam/adminlogin.php" class="logo">
+                    <img src="../hellosam/assets/img/adminlogo.png" alt="Logo" >
+                </a>
             </h2>
         </div>
-        <form action="login.php" method="post">
+        <form action="adminlogin.php" method="post">
             <div class="form-group has-feedback">
                 <div class="input-group">
                     <input type="text" name="email" id="email" class="form-control" placeholder="Username">
@@ -77,19 +75,19 @@ if (isset($_POST['submit'])) {
             </div>
         </form>
         <!-- /.social-auth-links -->
-        <div class="row ">
+        <!-- <div class="row ">
             <br />
             <div class="col-md-6">
                 <a href="forgot-pass.php">Forgot Password</a>
             </div>
-        </div>
+        </div> -->
     </div>
     <!-- /.login-box-body -->
 </div>
 
 </body>
 <!--   Core JS Files   -->
-<script src="../assets/js/jquery.3.2.1.min.js" type="text/javascript"></script>
-<script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="../assets/js/common.js"></script>
+<script src="../hellosam/assets/js/jquery.3.2.1.min.js" type="text/javascript"></script>
+<script src="../hellosam/assets/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../hellosam/assets/js/common.js"></script>
 </html>

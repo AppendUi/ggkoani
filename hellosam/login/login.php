@@ -21,7 +21,7 @@ if (isset($_POST['submit'])) {
             $db->redirect_to("../attendance/manual_attendance.php");
         }
         if($user["user_role"] == "student"){
-            $db->redirect_to("../attendance/attendance.php");
+            $db->redirect_to("../pdf/view_result1.php");
         }
     }
     else{

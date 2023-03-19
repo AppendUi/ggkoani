@@ -67,9 +67,9 @@ use Antoineaugusti\EasyPHPCharts\Chart;
                 return $data;
             }
         }
-
+            
         $student = get_student_data_from_email($_SESSION['s_email']);
-        var_dump($student);
+    
         if($student) 
         {
             foreach ($student as $stud){

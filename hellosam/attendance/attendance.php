@@ -1,13 +1,17 @@
 <?php
     include "header.php";
+    
 ?>
 <script src="angular.min.js"></script>
+
       <div class="wrapper wrapper-content animated fadeInRight">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>Subject : <?php echo $_COOKIE['Subject']; ?></h5>
+                            <h5>Subject : <?php if (isset($_COOKIE['Subject'])) {
+                                     echo $_COOKIE['Subject'];
+}                                    ?></h5>
 
                             <div class="ibox-tools">
                                 <form action="attendance_xml.php" method="POST">

@@ -21,10 +21,10 @@
                                 <div class="form-group"><label class="col-sm-2 control-label">Department</label>
 
                                     <div class="col-sm-10"><select class="form-control m-b" name="account">
-                                        <option>Computer</option>
-                                        <option>Electrical</option>
-                                        <option>Mechanical</option>
-                                        <option>Electronics</option>
+                                        <option value="S004">Computer</option>
+                                        <option value="S005">Electrical</option>
+                                        <option value="S006">Mechanical</option>
+                                        <option value="S007">Electronics</option>
                                     </select>
                                     </div>
                                 </div>

@@ -2,7 +2,7 @@
 session_start();
     include "header.php";
 function get_result_data_from_roll($student_roll){
-    $conn = mysqli_connect("localhost", "root", "", "hellosam");
+    $conn = mysqli_connect("localhost", "root", "", "testproject");
     $query = "SELECT * from result where s_rollno = '$student_roll';";
     $result = mysqli_query($conn,$query);
     $num_rows = mysqli_num_rows($result);
@@ -16,7 +16,7 @@ function get_result_data_from_roll($student_roll){
 }
 
 function get_student_data_from_email($student_email){
-    $conn = mysqli_connect("localhost", "root", "", "hellosam");
+    $conn = mysqli_connect("localhost", "root", "", "testproject");
     $query = "SELECT * from admission where s_email = '$student_email';";
     $result = mysqli_query($conn,$query);
     $num_rows = mysqli_num_rows($result);
@@ -31,7 +31,7 @@ function get_student_data_from_email($student_email){
 
 function getsubjectsbyid($sub_id)
 {
-    $conn = mysqli_connect("localhost", "root", "", "hellosam");
+    $conn = mysqli_connect("localhost", "root", "", "testproject");
     $query = "select * from class where sub_id='$sub_id' and class_id='C001';";
     $result = mysqli_query($conn, $query);
     $num_rows = mysqli_num_rows($result);

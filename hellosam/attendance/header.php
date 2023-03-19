@@ -27,7 +27,7 @@
                     <div class="dropdown profile-element">
                             <!-- <a data-toggle="dropdown" class="dropdown-toggle" href="#"> -->
                             <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">CTU</strong>
-                             </span> <span class="text-muted text-xs block">College University</span> </span> </a>
+                             </span> <span class="text-muted text-xs block"><?php echo $_SESSION['username'];?></span> </span> </a>
                             <!-- <ul class="dropdown-menu animated fadeInRight m-t-xs">
                                 <li><a href="../login/logout.php">Logout</a></li>
                             </ul> -->

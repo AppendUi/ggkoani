@@ -9,14 +9,16 @@ $getsubjects = $db ->getsubjects();
 $id = $_GET["id"];
 $getStudent = $db ->getStudentById($id);
 
-
 if(isset($_POST['submit'])){
     $s_email = $_POST["email"];
     $s_name = $_POST["name"];
-    $p_email = $_POST["pemail"];
-    $p_name = $_POST["pname"];
+    $dept_name = $_POST["dept_name"];
+    $class_id = $_POST["class_id"];
     $s_rollno = $_POST["s_rollno"];
-    $edit_student = $db->edit_student($s_rollno,$s_email,$s_name,$p_email,$p_name,$id );
+    $password = $_POST["password"];
+
+    $add_admission = $db->edit_student($s_rollno,$s_email,$s_name,$dept_name,$class_id,$id);
+    $student = $db->editUser($s_rollno,$s_email,$password);
     $db->redirect_to("student.php");
 }
 
@@ -26,7 +28,9 @@ if($getStudent) {
         $s_name = $row['s_name'];
         $p_email = $row['p_email'];
         $s_email = $row['s_email'];
-        $p_name = $row['p_name'];
+        $dept_name = $row["dept_name"];
+        $class_id = $row["class_id"];
+        // $mobile = $row['mobile'];
 echo'
 <div class="row">
     <div class="col-lg-12">
@@ -34,19 +38,16 @@ echo'
             <div class="ibox-title">
                 <h5>Edit Student '.$s_name.'</h5>
                 <div class="ibox-tools">
-                    <a class="collapse-link">
-                        <i class="fa fa-chevron-up"></i>
-                    </a>
-                    <a class="close-link">
-                        <i class="fa fa-times"></i>
-                    </a>
+                   
                 </div>
             </div>
             <div class="ibox-content">
                 <form method="post" class="form-horizontal">
                     <div class="hr-line-dashed"></div>
                     <div class="form-group"><label class="col-sm-2 control-label">Student Roll No</label>
-                        <div class="col-sm-10"><input type="text" value="'.$s_rollno.'" name="s_rollno" id="s_rollno" class="form-control"></div>
+                        <div class="col-sm-10">
+                            <input type="text" value="'.$s_rollno.'" name="s_rollno" id="s_rollno" class="form-control" readonly>
+                        </div>
                     </div>
                     <div class="hr-line-dashed"></div>
                     <div class="form-group"><label class="col-sm-2 control-label">Student Name</label>
@@ -57,12 +58,18 @@ echo'
                         <div class="col-sm-10"><input type="email" value="'.$s_email.'" name="email" id="email" class="form-control"></div>
                     </div>
                     <div class="hr-line-dashed"></div>
-                    <div class="form-group"><label class="col-sm-2 control-label">Parent Name</label>
-                        <div class="col-sm-10"><input type="text" name="pname" value="'.$p_name.'" id="pname" class="form-control"></div>
+                    <div class="form-group"><label class="col-sm-2 control-label">Department</label>
+                        <div class="col-sm-10"><input type="text" name="dept_name" value="'.$dept_name.'" id="dept_name" class="form-control"></div>
                     </div>
                     <div class="hr-line-dashed"></div>
-                    <div class="form-group"><label class="col-sm-2 control-label">Parent Email</label>
-                        <div class="col-sm-10"><input type="email" name="pemail" value="'.$p_email.'" id="pemail" class="form-control"></div>
+                    <div class="form-group"><label class="col-sm-2 control-label">Class Section</label>
+                        <div class="col-sm-10"><input type="class_id" name="class_id" value="'.$class_id.'" id="class_id" class="form-control"></div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                   
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group"><label class="col-sm-2 control-label">Password</label>
+                        <div class="col-sm-10"><input type="password" name="password" value="" id="password" class="form-control"></div>
                     </div>
                     <div class="hr-line-dashed"></div>
                     <div class="form-group">

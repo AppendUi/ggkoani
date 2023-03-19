@@ -29,19 +29,16 @@ error_reporting(E_ALL ^ E_DEPRECATED);
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element">
-                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <!-- <a data-toggle="dropdown" class="dropdown-toggle" href="#"> -->
                             <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"><?php echo $_SESSION['username'];?></strong>
-                             </span> <span class="text-muted text-xs block"><?php echo $_SESSION['s_email'];?><b class="caret"></b></span> </span> </a>
-                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                             <!-- </span> <span class="text-muted text-xs block"><?php echo $_SESSION['username'];?><b class="caret"></b></span> </span> </a> -->
+                            <!-- <ul class="dropdown-menu animated fadeInRight m-t-xs">
                                 <li><a href="../login/logout.php">Logout</a></li>
-                            </ul>
+                            </ul> -->
                     </div>
                     <div class="logo-element">
                         IN+
                     </div>
-                </li>
-                <li>
-                    <a href="../home.php"><i class="fa fa-th-large"></i> <span class="nav-label">Home</span> </a>
                 </li>
                 <li>
                     <a href="teacher.php"><i class="fa fa-th-large"></i> <span class="nav-label">Teachers</span></a>
@@ -67,7 +64,7 @@ error_reporting(E_ALL ^ E_DEPRECATED);
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
                     <li>
-                        <a href="../login/logout.php">
+                        <a href="/HelloSAM-master//hellosam/adminlogin.php">
                             <i class="fa fa-sign-out"></i> Log out
                         </a>
                     </li>

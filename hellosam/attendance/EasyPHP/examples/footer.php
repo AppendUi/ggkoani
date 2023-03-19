@@ -1,6 +1,6 @@
         <div class="footer">
             <div>
-                <strong>Copyright</strong> HelloSAM &copy; 2018
+                <strong>BIT-CT2B</strong> Attendance Fingerprint sensor &copy; 2018
             </div>
         </div>
 

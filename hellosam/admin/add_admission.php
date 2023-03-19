@@ -16,89 +16,99 @@ if(isset($_POST['email'])){
     $p_email = $_POST["pemail"];
     $p_name = $_POST["pname"];
     $s_rollno = $_POST["s_rollno"];
-    $add_admission = $db->add_admission($s_rollno,$s_email,$s_name,$p_email,$p_name);
+    $dept_name = $_POST["dept_name"];
+    $class_id = $_POST["class_id"];
+    $role = 'student';
+    $mobile = $_POST["mobile"];
+    $add_admission = $db->add_admission($s_rollno,$s_email,$s_name,$p_email,$p_name,$dept_name,$class_id);
+    $student = $db->signup($s_rollno,$s_email,md5($s_rollno),$s_email,$role,$mobile);
+    $db->redirect_to("student.php");
+
     if(isset($_POST['email'])) {
         $mail = new PHPMailer(true);
         $email_address = $_POST['email'];
         $email_address1 = $_POST['pemail'];
+        $db->redirect_to("student.php");
         $token = md5(bin2hex(openssl_random_pseudo_bytes(32)));
         $token1 = md5(bin2hex(openssl_random_pseudo_bytes(32)));
-//         $emailBody = "<div>
-// <br>
-// <p>Click this link to reset your password<br>
-// <a href='http://localhost/hellosam/login/signup.php?user_role=student&s_email=".$s_email."&s_rollno=".$s_rollno."'>http://localhost/hellosam/login/signup.php?user_role=student&s_email=".$s_email."&s_rollno=".$s_rollno."</a>
-// </p>Regards,<br> Admin.</div>";
-//         $emailBody1 = "<div>
-// <br>
-// <p>Click this link to reset your password<br>
-// <a href='http://localhost/hellosam/login/signup.php?user_role=parent&s_email=".$p_email."&s_rollno=-1'>http://localhost/hellosam/login/signup.php?user_role=parent&s_email=".$p_email."&s_rollno=-1</a>
-// </p>Regards,<br> Admin.</div>";
-    //     $mail = new PHPMailer(true);
-    //     try {
-    //         //Server settings
-    //         $mail->SMTPDebug = 0;
-    //         $mail->isSMTP();
-    //         $mail->Host = 'smtp.gmail.com';
-    //         $mail->SMTPAuth = true;
-    //         $mail->Username = 'YOUR_EMAIL';
-    //         $mail->Password = 'YOUR_PASSWORD';
-    //         $mail->SMTPSecure = 'ssl';
-    //         $mail->Port = 465;
-    //         $mail->SMTPOptions = array(
-    //             'ssl' => array(
-    //                 'verify_peer' => false,
-    //                 'verify_peer_name' => false,
-    //                 'allow_self_signed' => true
-    //             )
-    //         );
-    //         $mail->setFrom('YOUR_EMAIL', 'Email Verification');
-    //         $mail->addAddress($email_address, 'Email Verification');
-    //         $mail->addReplyTo('YOUR_EMAIL', 'Email Verification');
-    //         $mail->isHTML(true);
-    //         $mail->Subject = 'Email Verification';
-    //         $mail->Body = $emailBody;
+       
+        $emailBody = "<div>
+        
+<br>
+<p>Click this link to reset your password<br>
+<a href='http://localhost/hellosam/login/signup.php?user_role=student&s_email=".$s_email."&s_rollno=".$s_rollno."'>http://localhost/hellosam/login/signup.php?user_role=student&s_email=".$s_email."&s_rollno=".$s_rollno."</a>
+</p>Regards,<br> Admin.</div>";
+        $emailBody1 = "<div>
+<br>
+<p>Click this link to reset your password<br>
+<a href='http://localhost/hellosam/login/signup.php?user_role=parent&s_email=".$p_email."&s_rollno=-1'>http://localhost/hellosam/login/signup.php?user_role=parent&s_email=".$p_email."&s_rollno=-1</a>
+</p>Regards,<br> Admin.</div>";
+//         $mail = new PHPMailer(true);
+//         try {
+//             //Server settings
+//             $mail->SMTPDebug = 0;
+//             $mail->isSMTP();
+//             $mail->Host = 'smtp.gmail.com';
+//             $mail->SMTPAuth = true;
+//             $mail->Username = 'YOUR_EMAIL';
+//             $mail->Password = 'YOUR_PASSWORD';
+//             $mail->SMTPSecure = 'ssl';
+//             $mail->Port = 465;
+//             $mail->SMTPOptions = array(
+//                 'ssl' => array(
+//                     'verify_peer' => false,
+//                     'verify_peer_name' => false,
+//                     'allow_self_signed' => true
+//                 )
+//             );
+//             $mail->setFrom('YOUR_EMAIL', 'Email Verification');
+//             $mail->addAddress($email_address, 'Email Verification');
+//             $mail->addReplyTo('YOUR_EMAIL', 'Email Verification');
+//             $mail->isHTML(true);
+//             $mail->Subject = 'Email Verification';
+//             $mail->Body = $emailBody;
 
-    //         $mail->send();
-    //         $db->update_token($token, $email_address);
-    //         echo "<script>alert('Email sent!');</script>";
-    //     } catch (Exception $e) {
-    //         echo "<script>alert('Message could not be sent. !');</script>";
-    //         echo 'Mailer Error: ' . $mail->ErrorInfo;
-    //     }
+//             $mail->send();
+//             $db->update_token($token, $email_address);
+//             echo "<script>alert('Email sent!');</script>";
+//         } catch (Exception $e) {
+//             echo "<script>alert('Message could not be sent. !');</script>";
+//             echo 'Mailer Error: ' . $mail->ErrorInfo;
+//         }
 
-    //     $mail1 = new PHPMailer(true);
-    //     try {
-    //         //Server settings
-    //         $mail1->SMTPDebug = 0;
-    //         $mail1->isSMTP();
-    //         $mail1->Host = 'smtp.gmail.com';
-    //         $mail1->SMTPAuth = true;
-    //         $mail1->Username = 'YOUR_EMAIL';
-    //         $mail1->Password = 'YOUR_PASSWORD';
-    //         $mail1->SMTPSecure = 'ssl';
-    //         $mail1->Port = 465;
-    //         $mail1->SMTPOptions = array(
-    //             'ssl' => array(
-    //                 'verify_peer' => false,
-    //                 'verify_peer_name' => false,
-    //                 'allow_self_signed' => true
-    //             )
-    //         );
-    //         $mail1->setFrom('YOUR_EMAIL', 'Email Verification');
-    //         $mail1->addAddress($email_address1, 'Email Verification');
-    //         $mail1->addReplyTo('YOUR_EMAIL', 'Email Verification');
-    //         $mail1->isHTML(true);
-    //         $mail1->Subject = 'Email Verification';
-    //         $mail1->Body = $emailBody1;
+//         $mail1 = new PHPMailer(true);
+//         try {
+//             //Server settings
+//             $mail1->SMTPDebug = 0;
+//             $mail1->isSMTP();
+//             $mail1->Host = 'smtp.gmail.com';
+//             $mail1->SMTPAuth = true;
+//             $mail1->Username = 'YOUR_EMAIL';
+//             $mail1->Password = 'YOUR_PASSWORD';
+//             $mail1->SMTPSecure = 'ssl';
+//             $mail1->Port = 465;
+//             $mail1->SMTPOptions = array(
+//                 'ssl' => array(
+//                     'verify_peer' => false,
+//                     'verify_peer_name' => false,
+//                     'allow_self_signed' => true
+//                 )
+//             );
+//             $mail1->setFrom('YOUR_EMAIL', 'Email Verification');
+//             $mail1->addAddress($email_address1, 'Email Verification');
+//             $mail1->addReplyTo('YOUR_EMAIL', 'Email Verification');
+//             $mail1->isHTML(true);
+//             $mail1->Subject = 'Email Verification';
+//             $mail1->Body = $emailBody1;
 
-    //         $mail1->send();
-    //         $db->update_token($token1, $email_address1);
-    //         echo "<script>alert('Email sent!');</script>";
-    //     } catch (Exception $e) {
-    //         echo "<script>alert('Message could not be sent. !');</script>";
-    //         echo 'Mailer Error: ' . $mail1->ErrorInfo;
-    //     }
-    }
+//             $mail1->send();
+//             $db->update_token($token1, $email_address1);
+//             echo "<script>alert('Email sent!');</script>";
+//         } catch (Exception $e) {
+//             echo "<script>alert('Message could not be sent. !');</script>";
+//             echo 'Mailer Error: ' . $mail1->ErrorInfo;
+//         }
+     }
 }
 echo'
 <div class="row">
@@ -108,10 +118,7 @@ echo'
                 <h5>Add Student</h5>
                 <div class="ibox-tools">
                     <a class="collapse-link">
-                        <i class="fa fa-chevron-up"></i>
-                    </a>
-                    <a class="close-link">
-                        <i class="fa fa-times"></i>
+
                     </a>
                 </div>
             </div>
@@ -136,13 +143,24 @@ echo'
                     <div class="hr-line-dashed"></div>
                     <div class="form-group"><label class="col-sm-2 control-label">Parent Email</label>
                         <div class="col-sm-10"><input type="email" name="pemail" id="pemail" class="form-control"></div>
-                    </div>
+                    </div>  
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group"><label class="col-sm-2 control-label">Mobile</label>
+                        <div class="col-sm-10"><input type="mobile" name="mobile"" id="mobile"" class="form-control"></div>
+                    </div>  
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group"><label class="col-sm-2 control-label">Department</label>
+                        <div class="col-sm-10"><input type="text" name="dept_name"" id="dept_name"" class="form-control"></div>
+                    </div>  
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group"><label class="col-sm-2 control-label">Class Section</label>
+                        <div class="col-sm-10"><input type="class_id" name="class_id"" id="class_id"" class="form-control"></div>
+                    </div>  
                     <div class="hr-line-dashed"></div>
                     <div class="form-group">
                         <div class="col-sm-4 col-sm-offset-2">
-                            <button class="btn btn-white" type="submit">Cancel</button>
-                            <button class="btn btn-primary" name="submit" type="button" onclick="check_student_validations();">Add</button>
-                        </div>
+                              <button class="btn btn-primary" name="submit" type="submit">Add</button>
+                            <button type="button" class="btn btn-white"" onclick="window.history.back();">Cancel</button>
                     </div>
                 </form>
             </div>

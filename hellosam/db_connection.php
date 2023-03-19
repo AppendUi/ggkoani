@@ -35,11 +35,9 @@ class DB_FUNCTIONS
         }
     }
 
-    function edit_student($s_rollno,$s_email,$s_name,$p_email,$p_name, $id){
+    function edit_student($s_rollno,$s_email,$s_name,$dept_name,$class_id,$id){
         $conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
-        $dept_name = "COMPS";
-        $class_id = "C001";
-        $query = "UPDATE `admission` SET `s_rollno`='$s_rollno',`s_name`='$s_name',`p_name`='$p_email',`dept_name`='$dept_name',`class_id`='$class_id',`s_email`='$s_email' WHERE `id` = $id" ;
+        $query = "UPDATE `admission` SET `s_rollno`='$s_rollno',`s_name`='$s_name',`dept_name`='$dept_name',`s_email`='$s_email' WHERE `id` = $id" ;
         $result = mysqli_query($conn, $query);
         return $query;
     }
@@ -51,6 +49,11 @@ class DB_FUNCTIONS
         return $result;
     }
 
+    function getUserByEmail($email) 
+    {
+
+    }
+
     function attempt_login($username, $password)
     {
         $conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
@@ -59,6 +62,7 @@ class DB_FUNCTIONS
         $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
         return $user;
     }
+
     function signup($s_rollno,$username,$password,$s_email,$user_role,$mobile){
         $conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
         $query = "INSERT INTO user(s_rollno, username, password, s_email, user_role, mobile) VALUES ('$s_rollno','$username','$password','$s_email','$user_role','$mobile');";
@@ -158,10 +162,9 @@ class DB_FUNCTIONS
         return $result;
     }
   
-    function add_admission($s_rollno,$s_email,$s_name,$p_email,$p_name){
+    function add_admission($s_rollno,$s_email,$s_name,$p_email,$p_name,$dept_name,$class_id){
         $conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
-        $dept_name = "COMPS";
-        $class_id = "C001";
+
         $query = "INSERT INTO admission(s_rollno, s_email, s_name, p_name, dept_name, class_id, p_email) VALUES ('$s_rollno','$s_email','$s_name','$p_name','$dept_name','$class_id','$p_email');";
         $result = mysqli_query($conn, $query);
         return $result;
@@ -229,6 +232,13 @@ class DB_FUNCTIONS
             }
         }
         return $result;
+    }
+
+    function editUser($s_rollno,$s_email,$password){
+        $conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+        $query ="UPDATE `user` SET `username`='$s_email',`password`='$s_rollno' WHERE `s_rollno` = $s_rollno";
+        $result = mysqli_query($conn, $query);
+        return $query;
     }
 }
 ?>

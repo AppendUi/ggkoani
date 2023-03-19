@@ -17,6 +17,8 @@ if(isset($_POST['submit'])){
     $t_subjects = $_POST["subject"];
     $user_role = "teacher";
     $add_teacher = $db->add_teacher($t_id,$t_email,$t_name,$t_subjects,$user_role);
+    $db->redirect_to("student.php");
+
     if(isset($_POST['email'])) {
         $mail = new PHPMailer(true);
         $email_address = $_POST['email'];
@@ -26,38 +28,38 @@ if(isset($_POST['submit'])){
 <p>Click this link to reset your password<br>
 <a href='http://localhost/hellosam/login/signup.php?user_role=".$user_role."&s_email=".$t_email."'>http://localhost/hellosam/login/signup.php?user_role=".$user_role."&s_email=".$t_email."</a>
 </p>Regards,<br> Admin.</div>";
-        $mail = new PHPMailer(true);
-        try {
-            //Server settings
-            $mail->SMTPDebug = 0;
-            $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com';
-            $mail->SMTPAuth = true;
-            $mail->Username = 'YOUR_EMAIL';
-            $mail->Password = 'YOUR_PASSWORD';
-            $mail->SMTPSecure = 'ssl';
-            $mail->Port = 465;
-            $mail->SMTPOptions = array(
-                'ssl' => array(
-                    'verify_peer' => false,
-                    'verify_peer_name' => false,
-                    'allow_self_signed' => true
-                )
-            );
-            $mail->setFrom('YOUR_EMAIL', 'Password Reset Mail');
-            $mail->addAddress($email_address, 'Password Reset Mail');
-            $mail->addReplyTo('YOUR_EMAIL', 'Password Reset Mail');
-            $mail->isHTML(true);
-            $mail->Subject = 'Password Reset Mail';
-            $mail->Body = $emailBody;
+        // $mail = new PHPMailer(true);
+        // try {
+        //     //Server settings
+        //     $mail->SMTPDebug = 0;
+        //     $mail->isSMTP();
+        //     $mail->Host = 'smtp.gmail.com';
+        //     $mail->SMTPAuth = true;
+        //     $mail->Username = 'YOUR_EMAIL';
+        //     $mail->Password = 'YOUR_PASSWORD';
+        //     $mail->SMTPSecure = 'ssl';
+        //     $mail->Port = 465;
+        //     $mail->SMTPOptions = array(
+        //         'ssl' => array(
+        //             'verify_peer' => false,
+        //             'verify_peer_name' => false,
+        //             'allow_self_signed' => true
+        //         )
+        //     );
+        //     $mail->setFrom('YOUR_EMAIL', 'Password Reset Mail');
+        //     $mail->addAddress($email_address, 'Password Reset Mail');
+        //     $mail->addReplyTo('YOUR_EMAIL', 'Password Reset Mail');
+        //     $mail->isHTML(true);
+        //     $mail->Subject = 'Password Reset Mail';
+        //     $mail->Body = $emailBody;
 
-            $mail->send();
-            $db->update_token($token, $email_address);
-            echo "<script>alert('Email sent!');</script>";
-        } catch (Exception $e) {
-            echo "<script>alert('Message could not be sent. !');</script>";
-            echo 'Mailer Error: ' . $mail->ErrorInfo;
-        }
+        //     $mail->send();
+        //     $db->update_token($token, $email_address);
+        //     echo "<script>alert('Email sent!');</script>";
+        // } catch (Exception $e) {
+            // echo "<script>alert('Message could not be sent. !');</script>";
+            // echo 'Mailer Error: ' . $mail->ErrorInfo;
+        // }
     }
 }
 echo'
@@ -65,7 +67,7 @@ echo'
     <div class="col-lg-12">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>Add teacher</h5>
+                <h5>Add teacher </h5>
                 <div class="ibox-tools">
                     <a class="collapse-link">
                         <i class="fa fa-chevron-up"></i>
@@ -98,8 +100,9 @@ echo'
                     </div>
                     <div class="hr-line-dashed"></div>
                     <div class="form-group">
-                        <div class="col-sm-4 col-sm-offset-2">
+                       <div class="col-sm-4 col-sm-offset-2">
                             <button class="btn btn-primary" name="submit" type="submit">Add</button>
+                            <button type="button" class="btn btn-white"" onclick="window.history.back();">Cancel</button>
                         </div>
                     </div>
                 </form>

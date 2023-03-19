@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 			<?php
-			$con=mysqli_connect("localhost","root","","hellosam");
+			$con=mysqli_connect("localhost","root","","testproject");
 			//$con=mysql_connect("localhost","root","");
 			//mysql_select_db("sakec",$con);
 			$coln=date("Y-m-d");

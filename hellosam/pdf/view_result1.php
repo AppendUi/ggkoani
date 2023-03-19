@@ -1,8 +1,8 @@
 <?php
 session_start();
-    include "header.php";
+    include "header1.php";
 function get_result_data_from_roll($student_roll){
-    $conn = mysqli_connect("localhost", "root", "", "hellosam");
+    $conn = mysqli_connect("localhost", "root", "", "testproject");
     $query = "SELECT * from result where s_rollno = '$student_roll';";
     $result = mysqli_query($conn,$query);
     $num_rows = mysqli_num_rows($result);
@@ -16,7 +16,8 @@ function get_result_data_from_roll($student_roll){
 }
 
 function get_student_data_from_email($student_email){
-    $conn = mysqli_connect("localhost", "root", "", "hellosam");
+    var_dump($student_email);
+    $conn = mysqli_connect("localhost", "root", "", "testproject");
     $query = "SELECT * from admission where s_email = '$student_email';";
     $result = mysqli_query($conn,$query);
     $num_rows = mysqli_num_rows($result);
@@ -45,8 +46,11 @@ function getsubjectsbyid($sub_id)
 
 $student = get_student_data_from_email($_SESSION['s_email']);
 $stud_id = '';
+
+if (get_student_data_from_email($student)){
 foreach ($student as $stud){
     $stud_id = $stud['s_rollno'];
+    }
 }
 
 ?>
@@ -58,9 +62,9 @@ foreach ($student as $stud){
                         <li>
                             <a href="index.html">Home</a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a>Tables</a>
-                        </li>
+                        </li> -->
                         <li class="active">
                             <strong>Data Tables</strong>
                         </li>
@@ -99,6 +103,8 @@ foreach ($student as $stud){
                     </thead>
  <?php                   $result = get_result_data_from_roll($stud_id);
 $total_marks = 0;
+
+if (get_student_data_from_email($result)){
 foreach ($result as $res){
     $res_marks = $res['marks'];
     $total_marks += $res_marks;
@@ -126,7 +132,7 @@ foreach ($result as $res){
                                 <td><?php echo $grade; ?></td>
                             </tr>
 <?php    }
-}	 ?>			
+}	 }?>			
 						<tr>
 						<td>
 						Total
